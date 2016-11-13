@@ -24,6 +24,7 @@ public class ShareDialog extends Dialog {
     public ShareDialog(Activity context) {
         super(context);
         mActivity = context;
+        mAdapter = new ShareAdapter(this);
     }
 
     /**
@@ -32,6 +33,14 @@ public class ShareDialog extends Dialog {
      */
     public void setShareParams(DefaultParams p) {
         mParams = p;
+    }
+
+    public int addShareImpl(Share.ShareImpl impl) {
+        return mAdapter.addShareImpl(impl);
+    }
+
+    public void removeShareImpl(int platform) {
+        mAdapter.removeShareImpl(platform);
     }
 
     @Override
@@ -47,7 +56,6 @@ public class ShareDialog extends Dialog {
         w.setAttributes(wp);
         mGrid = (RecyclerView)findViewById(mParams.getRCV());
         getWindow().setGravity(Gravity.BOTTOM);
-        mAdapter = new ShareAdapter(this);
         mAdapter.setPlatforms(mParams.getPlatforms());
         mGrid.setAdapter(mAdapter);
         setRcvByParams();

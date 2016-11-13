@@ -22,24 +22,11 @@ class ShareAdapter extends RecyclerView.Adapter {
     private static final int NONE = -1;
 
     public void setPlatforms( int targets ) {
-        if ((targets & ShareParams.PLATFORM_QQ) != 0) {
-            //分享到QQ
-            mShares.add(ShareParams.PLATFORM_QQ);
+        for (int i = 0; i < ShareParams.platformCount; i++) {
+            if ((targets & (1 << i)) != 0) {
+                mShares.add(1 << i);
+            }
         }
-        if ((targets & ShareParams.PLATFORM_WX) != 0) {
-            //分享到微信
-            mShares.add(ShareParams.PLATFORM_WX);
-        }
-        if ((targets & ShareParams.PLATFORM_QZONE) != 0) {
-            //分享到空间
-            mShares.add(ShareParams.PLATFORM_QZONE);
-        }
-        if ((targets & ShareParams.PLATFORM_WX_CIRCLE) != 0) {
-            //分享到微信朋友圈
-            mShares.add(ShareParams.PLATFORM_WX_CIRCLE);
-        }
-        //TODO 其他渠道的分享,以后可以在这里添加
-
         if (mDlg.mParams.showCancelView()) {
             mShares.add(NONE);
         }
@@ -47,6 +34,14 @@ class ShareAdapter extends RecyclerView.Adapter {
 
     public ShareAdapter(ShareDialog dialog) {
         mDlg = dialog;
+    }
+
+    public int addShareImpl(Share.ShareImpl impl) {
+        return mShare.addShareImpl(impl);
+    }
+
+    public void removeShareImpl(int platform) {
+        mShare.removeShareImpl(platform);
     }
 
     @Override
