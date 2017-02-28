@@ -102,6 +102,6 @@ shareDlg.setShareParams(new DefaultParams() {
   `Share.share(Activity activity, int platform, ShareParams p)`即可完成向指定平台的分享；
   
 # 增加、替换新平台
-    可以使用`public int addShareImpl(ShareImpl impl)`来增加一个分享的实现，函数返回新增实现的平台id；
-    使用`public void removeShareImpl(int platform)`移除指定平台的分享实现；
-    默认已经实现了QQ、空间、微信好友、微信朋友圈的分享实现，如果默认的这些实现不能满足需求，可以移除掉默认实现，把满足自己需求的实现添加进去即可。
+可以使用`public int addShareImpl(ShareImpl impl)`来增加一个分享的实现，函数返回新增实现的平台id；<br/>
+使用`public void removeShareImpl(int platform)`移除指定平台的分享实现；<br/>
+默认已经实现了QQ、空间、微信好友、微信朋友圈的分享实现，如果默认的这些实现不能满足需求，可以移除掉默认实现，把满足自己需求的实现添加进去即可。
